@@ -40,12 +40,18 @@ ol {
   list-style: none;
 }
 
+.button:focus,
+.search-form__textfield:focus,
+.search-form__checkbox:focus,
+.content__card-link:focus {
+  outline: none;
+}
+
 .button:focus-visible,
 .search-form__textfield:focus-visible,
-.search-form__label:has(.search-form__checkbox:focus-visible),
-.content__card-link:focus-visible {
-  outline: 1px solid #fff;
-  outline-offset: 1px;
+.search-form__label:has(:focus-visible) .content__card-link:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
 }
 
 .content {
@@ -69,24 +75,26 @@ ol {
 }
 
 .result__video {
-  width: 100%;
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
 }
 
 .search-form {
   display: flex;
-  gap: 38px;
+  gap: 42px;
 }
 
 .search-form__fieldset {
   border: none;
-  width: 225px;
+  width: fit-content;
   align-self: center;
 }
 
 .search-form__fieldset-title {
   font-weight: 400;
   font-size: 18px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .search-form__textfield {
@@ -95,10 +103,15 @@ ol {
   font-size: 18px;
   width: 224px;
   border: none;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
   background-color: transparent;
   appearance: none;
+  color: currentColor;
+}
+
+.search-form__label:hover .search-form__label-text {
+  text-decoration: underline;
 }
 
 .search-form__label {
@@ -108,6 +121,7 @@ ol {
   width: fit-content;
   position: relative;
   cursor: pointer;
+  padding: 0 2px;
 }
 
 .search-form__checkbox-list {
@@ -120,24 +134,21 @@ ol {
   display: flex;
   align-items: center;
   align-self: center;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #fff;
-  margin-right: 5px;
+  width: 19px;
+  height: 19px;
+  border: 1px solid currentColor;
 }
 
-.search-form__checkbox:checked + .search-form__pseudo-checkbox {
-  display: flex;
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::after {
+  content: "";
+  display: block;
   width: 15px;
   height: 15px;
-  margin: 2px;
-  background-color: #fff;
-  outline: 1px solid #fff;
-  outline-offset: 1px;
+  background-color: white;
 }
 
 .search-form__textfield:active {
-  border: 1px solid #fff;
+  border: 1px solid currentColor;
 }
 
 .search-form__textfield:hover {
@@ -159,18 +170,18 @@ ol {
 .search-form__submit-button {
   width: 190px;
   align-self: flex-end;
+  height: 34px;
 }
 
 .button {
   cursor: pointer;
   appearance: none;
   font-family: "Fira Sans Condensed", sans-serif;
-  color: #fff;
+  color: currentColor;
   font-weight: 700;
   justify-content: center;
   align-items: center;
-  border: 1px solid #fff;
-  color: #fff;
+  border: 1px solid currentColor;
   background-color: transparent;
   padding: 8px;
   font-size: 18px;
@@ -184,13 +195,9 @@ ol {
   text-decoration: underline;
 }
 
-.search-form__submit-button {
-  width: 194px;
-  align-self: flex-end;
-}
-
 .more-button {
   width: 100%;
+  height: 34px;
 }
 
 /* -------блок details----------- */
@@ -203,7 +210,7 @@ ol {
 }
 
 .title {
-  font-family: Oswald, sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 75px;
   text-transform: uppercase;
   line-height: 94%;
@@ -214,8 +221,10 @@ ol {
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 302px;
+  height: 296px;
+  min-width: 399px;
   overflow: auto;
+  align-self: baseline;
 }
 
 .content__list-item {
@@ -224,21 +233,16 @@ ol {
 }
 
 .content__list-item:not(:last-child) {
-  margin-bottom: 22px;
-}
-
-.content__card-link_current {
-  background-color: #545050;
+  margin-bottom: 30px;
 }
 
 .content__video-card {
   display: flex;
-  margin: 2px;
 }
 
 .content__video-card-title {
-  color: #fff;
-  font-family: Oswald, sans-serif;
+  color: currentColor;
+  font-family: "Oswald", sans-serif;
   font-size: 30px;
   font-style: normal;
   font-weight: 700;
@@ -248,15 +252,15 @@ ol {
 }
 
 .content__video-card-thumbnail {
+  background-position: center;
   object-fit: cover;
   width: 194px;
   height: 103px;
   margin-left: auto;
-  object-fit: cover;
 }
 
 .content__video-card-description {
-  color: #fff;
+  color: currentColor;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -276,10 +280,9 @@ ol {
 
 .content__card-link {
   text-decoration: none;
-  color: #fff;
+  color: currentColor;
   display: block;
   flex-grow: 1;
-  margin: 2px;
 }
 
 .content__card-link_current {
@@ -292,7 +295,7 @@ ol {
 
 .content__card-link:hover {
   cursor: pointer;
-  color: #fff;
+  color: currentColor;
   text-decoration: underline;
   text-decoration-skip-ink: none;
 }
